@@ -1,0 +1,22 @@
+---
+services:
+  app:
+    image:banksamp
+    environment:
+      -SPRING_PROFILES_ACTIVE:sabpract
+    ports:
+     -8020:80
+    links:
+     -db:db
+    network_mode:bridge  
+ db:
+   image:mysql:5.7
+   ports:
+    -3000:3000
+  environment:
+    -MYSQL_ROOT_PASSWORD:''
+    -MYSQL_ALLOW_EMPTY_PASSWORD :"true"
+    -MYSQL_USER:sab
+    -MYSQL_PASSWORD:sab
+    -MYSQL_DB:sabpract
+
