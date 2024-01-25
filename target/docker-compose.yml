@@ -4,7 +4,7 @@ services:
   javaapp:
     image: saboora/bankweb:37
     ports:
-      - 80:8080
+      - 8090:8080
     volumes:
       - /$(pwd):/usr/local/tomcat/webapps
   mysqlapp:
