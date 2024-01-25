@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  javaapp:
+    image: saboora/bankweb:37
+    ports:
+      - 80:8080
+    volumes:
+      - /$(pwd):/usr/local/tomcat/webapps
+  mysqlapp:
+    image: saboora/banksql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=supersecret 
+    ports:
+      - 3311:3306
+
+networks: 
+    driver: bridge
+    
