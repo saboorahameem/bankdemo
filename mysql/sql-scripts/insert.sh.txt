@@ -1,2 +1,2 @@
 INSERT INTO employees (first_name, last_name, department, email) 
-VALUES ('saboo', 'begum', 'IT', 'saboorahameem@mail.com');
+VALUES ('saboora', 'begum', 'IT', 'saboorahameem@mail.com');
