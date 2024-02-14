@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    
+
+    stages {
+        stage('checkout code') {
+            steps {
+                echo '${env.BUILD_NUMBER}'
+                git branch: 'main', url: 'https://github.com/saboorahameem/bankdemo.git'
+            }
+        }
+        stage('build the package') {
+            steps {
+                bat 'mvn clean install'
+            }
+        }
+
+               
+         stage('Docker image creation') {
+            steps {
+                bat '''
+                set "IMAGETAG=%BUILD_NUMBER%"
+                echo %IMAGETAG%
+                docker build -t saboora/bankweb:%IMAGETAG%  . 
+                '''
+            }
+        }
+         stage('Deploy in server') {
+            steps {
+            //deploy adapters: [tomcat9(credentialsId: '72113b33-cf3d-47cc-9850-63729567598d', path: '', url: 'http://localhost:9090')], contextPath: null, war: '**/*.war'
+            deploydeploy adapters: [tomcat9(credentialsId: '72113b33-cf3d-47cc-9850-63729567598d', path: '', url: 'http://localhost:9090')], contextPath: null, war: '**/*.war'
+            }
+        }
+
+    }
+}
