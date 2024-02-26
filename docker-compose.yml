@@ -15,5 +15,5 @@ services:
       - 3311:3306
 
 networks: 
-    driver: bridge
-    
+   driver: bridge
+   name: banknet
